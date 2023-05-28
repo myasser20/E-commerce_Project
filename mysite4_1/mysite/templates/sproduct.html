@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <meta charset="UTF-8"> 
+      <meta http-equiv="X-UA-Compatible" content="IE+edge">
+      <meta name="Spicy" content="width=device-width, initial-scale=1.0">
+      <title> SPICY </title>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+      <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+ 
+  <body> 
+
+    <section id="header">
+      <!-- <a href="#"><img src='images/logo.png' class="logo" alt=""></a> -->
+      <a href="#"><img src= "{% static 'css/images/logo.png' %}" class="logo" alt=""></a>
+
+      <div>
+        <ul  id="navbar">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a onclick="location.href='/shop'">Shop</a></li>
+          <li><a href="{% url  'contact' %}">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          {% if user.is_authenticated %}
+           <li><a href="{% url  'logout' %}">Logout</a></li>
+           <li><a href="{% url  'cart' %}"><i class="fa fa-shopping-cart" ></i></a></li>
+          {% else %}
+           <li><a onclick="location.href='/signup'">Account</a></li>
+           <li><a ><i onclick="location.href='/cart'" class="fa fa-shopping-cart" ></i></a></li>
+          {% endif %}
+          
+        </ul>
+      </div>  
+    </section>
+
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="{{primg.url}}" width="100%" id="MainImg" alt="">
+        </div>
+
+        <div class="single-pro-details">
+          <form action="{% url  'addToCart' prId %}" form method="post" id="request">
+            {% csrf_token %}
+             <h6>Home / T-Shirt</h6>
+             <h4>{{prname}}</h4>
+             <h2>{{prprice}} L.E</h2>
+             <select>
+                <option>Select Size</option>
+                <option>Small</option>
+                <option>Medium</option>
+                <option>XL</option>
+                <option>XXL</option>
+             </select>
+             <input type="number" value="1">
+             <p><button >Add to cart</button></p>
+             <h4>Product details</h4>
+             <span></span>
+          </form>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <p>Summer Collections New Modern Designs</p>
+        <div class="pro-container">
+          <div class="pro">
+            <img src="{% static 'css/images/n1.jpg' %}" alt="">
+            <div class="des">
+              <span>adidas</span>
+              <h5>Cartoon Astronaut T-shirts</h5>
+              <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h4>400</h4>
+            </div>
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+          </div>
+  
+          <div class="pro">
+            <img src="{% static 'css/images/n2.jpg' %}" alt="">
+            <div class="des">
+              <span>adidas</span>
+              <h5>Cartoon Astronaut T-shirts</h5>
+              <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h4>400</h4>
+            </div>
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+          </div>
+  
+          <div class="pro">
+            <img src="{% static 'css/images/n3.jpg' %}" alt="">
+            <div class="des">
+              <span>adidas</span>
+              <h5>Cartoon Astronaut T-shirts</h5>
+              <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h4>400</h4>
+            </div>
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+          </div>
+  
+          <div class="pro">
+            <img src="{% static 'css/images/n4.jpg' %}" alt="">
+            <div class="des">
+              <span>adidas</span>
+              <h5>Cartoon Astronaut T-shirts</h5>
+              <div class="star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+              </div>
+              <h4>400</h4>
+            </div>
+            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+          </div>
+  
+          
+        </div>
+      </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class=""newstext">
+      <h4> Sign Up For NewsLetters</h4>
+      <p>Get E-Mail Updates about our lastest shop and <span> special offers.</span> </p>
+      </div>
+
+      <div class="form">
+        <input type="text" placeholder="Your email address">
+        <button class="normal"> Sign Up</button>
+
+      </div>
+
+    </section>  
+
+    <footer class="section-p1">
+      <div class="col">
+        <img class="logo" src="{% static 'css/images/logo.png' %}" alt="">
+        <h4>Contact</h4>
+        <p><strong>Address:</strong> Misr University For Science and Technology </p>
+        <p><strong>Phone:</strong> 16878</p>
+        <div class="follow">
+            <h4>Follow Us</h4>
+            <div class="icon">
+              <i class="fab fa-facebook-f"></i> 
+              <i class="fab fa-instagram"></i>
+              <i class="fab fa-pinterest-p"></i>
+              <i class="fab fa-youtube"></i>
+              <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+      </div>
+
+
+<div class="col">
+  <h4>About</h4>
+  <a href="#">About Us</a>
+  <a href="#">Delivery information</a>
+  <a href="#">Privacy Policy</a>
+  <a href="#">Terms & Conditions</a>
+  <a href="#">Contact Us</a>
+</div>
+
+<div class="col">
+  <h4>My Account</h4>
+  <a href="#">Sign UP</a>
+  <a href="#">View Cart</a>
+  <a href="#">My Wishlist</a>
+  <a href="#">Track My Order</a>
+  <a href="#">Help</a>
+</div>
+
+<div class="col install">
+  <h4>Install App</h4>
+  <p>From App Store or Google Play</p>
+  <div class="row">
+    <img src="{% static 'css/images/app.jpg' %}" alt="">
+    <img src="{% static 'css/images/Play.jpg' %}" alt="">
+  </div>
+  <p>Secured Payment Gateways</p>
+  <img src="{% static 'css/images/pay.png' %}" alt="">
+</div>
+
+  <div class="copyright">
+    <p>2023 , MUST Students Collage Of Cs & Ai </p>
+  </div>
+
+  </footer>
+
+<!--   <script>
+    var MainImg = document.getElementById("MainImg");
+    var smallimg = document.getElementsByClassName("small-img");
+
+    smallimg[0].onclick=function(){
+        MainImg.src = smallimg[0].src;
+    }
+    smallimg[1].onclick=function(){
+        MainImg.src = smallimg[1].src;
+    }
+    smallimg[2].onclick=function(){
+        MainImg.src = smallimg[2].src;
+    }
+    smallimg[3].onclick=function(){
+        MainImg.src = smallimg[3].src;
+    }
+  </script>
+  <script src="{% static 'js/script.js' %}"></script> -->
+  </body>
+  </html>
